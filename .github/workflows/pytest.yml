@@ -26,11 +26,8 @@ jobs:
         run: uv pip install -e ".[dev]"
       - name: Test with pytest
         run: uv run poe test
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
         with:
-          token: ${{ secrets.CODECOV }}
-          file: ./coverage.xml
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: false
+          name: code-coverage-report
+          path: coverage.xml
